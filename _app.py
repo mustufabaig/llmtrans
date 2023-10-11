@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 
-from langchain.chat_models import AzureChatOpenAI
+from langchain.chat_models import AzureOpenAI
 from langchain import PromptTemplate
 
 template = """Answer the question based on the context below. If the
