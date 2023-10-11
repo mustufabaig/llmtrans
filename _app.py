@@ -38,6 +38,6 @@ OPENAI_API_VERSION = st.secrets["OPENAI_API_VERSION"]
 OPENAI_CHAT_MODEL = st.secrets["OPENAI_CHAT_MODEL"]
 
 llm = AzureChatOpenAI(temperature=0, deployment_name=OPENAI_CHAT_MODEL, model='gpt-4', verbose=True)
-res = llm([HumanMessage(content="Tell me which merchant \"$1 PIZZA SLICE NEW YORK NY ON 10/02\" belongs to")])
+res = llm([HumanMessage(content="extract merchant information out of \"$1 PIZZA SLICE NEW YORK NY ON 10/02\" transaction descriptor")])
 st.write(res)
         
