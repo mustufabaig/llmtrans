@@ -2,6 +2,7 @@ import streamlit as st
 import json
 
 from langchain.chat_models import AzureChatOpenAI
+from langchain.schema import HumanMessage
 from langchain import PromptTemplate
 
 template = """Answer the question based on the context below. If the
@@ -29,25 +30,8 @@ st.code(
     )
 )
 
-def get_chain():
-    if 'chain' not in st.session_state:
-        st.write('dbchain was not in the session')
-        #loading config from streamlit settings
-        OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
-        OPENAI_API_BASE = st.secrets["OPENAI_API_BASE"]
-        OPENAI_API_TYPE = st.secrets["OPENAI_API_TYPE"]
-        OPENAI_API_VERSION = st.secrets["OPENAI_API_VERSION"]
-        OPENAI_CHAT_MODEL = st.secrets["OPENAI_CHAT_MODEL"]
-        
-        # setup
-        llm = AzureChatOpenAI(temperature=0, deployment_name=OPENAI_CHAT_MODEL, model='gpt-4', verbose=True)
-        
-        #prompt template
-    
-        local_chain = "I m local chain"
-        st.session_state['txt_chain'] = local_chain
-        return local_chain
-        
-    return st.session_state['chain']
 
-chain = get_chain()
+llm = AzureChatOpenAI(temperature=0, deployment_name=OPENAI_CHAT_MODEL, model='gpt-4', verbose=True)
+res = llm([HumanMessage(content="Tell me a joke about a penguin sitting on a fridge.")])
+st.write(res)
+        
