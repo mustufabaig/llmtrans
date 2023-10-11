@@ -30,6 +30,12 @@ st.code(
     )
 )
 
+#######################################
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+OPENAI_API_BASE = st.secrets["OPENAI_API_BASE"]
+OPENAI_API_TYPE = st.secrets["OPENAI_API_TYPE"]
+OPENAI_API_VERSION = st.secrets["OPENAI_API_VERSION"]
+OPENAI_CHAT_MODEL = st.secrets["OPENAI_CHAT_MODEL"]
 
 llm = AzureChatOpenAI(temperature=0, deployment_name=OPENAI_CHAT_MODEL, model='gpt-4', verbose=True)
 res = llm([HumanMessage(content="Tell me a joke about a penguin sitting on a fridge.")])
